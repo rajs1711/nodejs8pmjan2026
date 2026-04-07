@@ -21,7 +21,7 @@ use this command to setup git in your local ,
 
 
 # git clone repolinks
-example: git clone https://github.com/rajs1711/NODEJS830PM.git
+example: git clone https://github.com/rajs1711/nodejs8pmjan2026.git
 
 Explain: This command is use to clone the remote repository in your local system
 
