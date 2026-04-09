@@ -1,0 +1,61 @@
+To setup your nodejs project we have to run one command called npm init
+ npm init => this command create one package.json file 
+ pakcage.json => this is the file which keeps informations of your project
+               example: project name , version , description , packages , script , project entry Point(main file)
+
+
+ Express: This is a JS framework which helps to develop server based web application  on node js engine.
+ 
+ Package => A Node.js package is:
+ A folder containing code (JavaScript files) along with a special file called package.json that describes the projec
+ 
+ npm=>(node pacakage manger)=> npm stands for Node Package Manager. It is the default tool used with Node.js to install,
+         manage, and share packages (libraries of code).
+         like install dependecies, uninstall , manage dependecies, run script.
+ 
+ @How to install package in node js ?
+
+ To install any package in your project you have to run this command 
+ syntex                                                 npm install packagename
+ example :                                              npm install express
+
+ when you run above npm install package command that package will be downloadded from NPM repository and installed in your project
+ and the downloaded version entry comes in package.json file within dependecies or dev dpendecies object.
+ and the express folder kep under node_modules folder.
+
+
+
+ Q. What is Package.json ?
+
+ package.json is a configuration file used in projects that use Node.js. It contains metadata about the project 
+ and manages dependencies, scripts, and settings.
+ example:
+ {
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "My first Node.js app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests yet\""
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+
+name → Project name
+version → Current version
+description → Short info about the project
+main → Entry file
+scripts → Commands you can run (npm start, etc.)
+dependencies → Libraries your project needs
+devDependencies → Tools needed only for development
+
+
+Q what is node modules ?
+In Node.js, node_modules is a folder that stores all the packages (libraries) your project depends on.
+
+example: express, body-parser, braces etc.
