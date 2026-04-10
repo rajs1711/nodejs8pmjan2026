@@ -59,3 +59,36 @@ Q what is node modules ?
 In Node.js, node_modules is a folder that stores all the packages (libraries) your project depends on.
 
 example: express, body-parser, braces etc.
+
+
+// nodemon => this is a package which helps to re-run your programme automatically whenever
+             you did any changes in your file
+
+// Differnce between dependecies and devDependencies 
+
+dependecies => 
+dependencies are libraries that your project needs 
+in order to run in production. These are required for 
+the core functionality of your application 
+and must be installed for your application to work properly.
+
+npm install packagename
+
+
+
+devDependencies=> 
+In package.json file, there is an object called as 
+dev Dependencies and it consists of all the packages 
+that are used in the project in its development phase and not in the production or testing environment with its version number. So, whenever you want to install any library that is required only in your development phase 
+then you can find it in the dev Dependencies object. 
+
+npm install pacakagename --save-dev 
+
+
+Note: npm install => this is a command which is used to install all packages which
+                     is written in package.json file under dependecies or devDependencies
+                     object
+
+Note: .gitignore => if you want any file or folder not uploaded to github repository or not want to commit    
+
+                    then keep file/folder name in this file.
