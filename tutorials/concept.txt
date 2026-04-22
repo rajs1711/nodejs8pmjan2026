@@ -136,9 +136,37 @@ Status Codes: Indicate the status of a request (e.g., 200 OK, 404 Not Found).
 comounnicate in this data format: JSON 
 usee HTTP METHODS => 
  GET =>
- POST=>
- PUT =>
- PATCH=>
- DELETE=>
+  data visible in url
+  you can send limited charcter using get method  (max  2,048 chacarcter)
+  data can be set cookies
+  you can not send multimidea data using get like files (docx , images)
+  less secure
+
+ POST=> (save)
+  data not visible in url ()
+  unlimited amound of data using POST method 
+  data can not be set to cookies 
+  post method can upload multimidea data like files (docx , images ...)
+  secure
+
+ PUT => data update (complete information update)
+ PATCH=> use to update data when you have to upload only few amount of data 
+ DELETE=> whenever you want to delete any data use DELETE METHOD .
+
+HTTP STATUS CODE
+ 200=>ok
+ 201 => created 
+ 301 =>redirection
+ 400=> bad request 
+ 404 => not found 
+ 500 => internal server error
+
+
+ ============
+
+ POSTMAN => this is a application use to test your API . this gives feature 
+            to hit api , send payload , recive reseponse in json  etc.
+
+
 
 
