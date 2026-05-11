@@ -1,0 +1,10 @@
+1. Ceate signup API  which accept 
+      name , email , mobile , address 
+
+2. Create login API which accept 
+       email 
+       password 
+       
+3. Create ApI to load user profile info based upon email .
+
+     email =>    data return 
