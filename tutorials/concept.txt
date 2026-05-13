@@ -166,8 +166,27 @@ HTTP STATUS CODE
 
  POSTMAN => this is a application use to test your API . this gives feature 
             to hit api , send payload , recive reseponse in json  etc.
-            
+
+=======================
+
+MVC => model view controller 
+
+MVC (Model–View–Controller) is an architectural pattern that splits an application into three roles:
+
+Model — Data and rules of the domain: structures, validation, persistence (database), and business logic. It does not care how things are shown on screen.
+
+View — Presentation: what the user sees (HTML, templates, UI components). It displays data from the model and usually avoids heavy business logic.
+
+Controller — Glue between user actions and the rest of the app: reads input (HTTP requests, clicks), updates the model, picks which view to render or what response to send.
+
+
+Note: using this concept you achive modular programming , (import/export of one module in another modules )
+      which give benifits of code reusability.
 
 
 
+
+API-ENDPOINT            <=>ROUTE  <=>  CONTROLLER        <=> MODEL               <=>(DB)
+http://myapi.com/api/   <=> login <=>  logincontroller.js <=> loginmodel.js       <=> login table
+(API)                                    (process api data)    (handle db-busi logic)    (actual data)
 
