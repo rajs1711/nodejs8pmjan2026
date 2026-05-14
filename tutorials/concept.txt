@@ -190,3 +190,20 @@ API-ENDPOINT            <=>ROUTE  <=>  CONTROLLER        <=> MODEL              
 http://myapi.com/api/   <=> login <=>  logincontroller.js <=> loginmodel.js       <=> login table
 (API)                                    (process api data)    (handle db-busi logic)    (actual data)
 
+
+Middleware : =>middleware is a concept which works betwwen your route and controller , whenever you hit any 
+               api midllewra ehelpd to validate and implement pre checks before passing request to out contoller file. 
+
+               you can implement middleware in route or using app.use(). 
+
+               next() function in middleware helps to excute next action when middleware validation completed successfully othereise 
+               we can retrun response directly from here. 
+
+               some of the use case of middleware are  :
+
+                data validation 
+                authentication
+
+                etc.
+
+
