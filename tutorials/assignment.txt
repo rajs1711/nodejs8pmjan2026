@@ -8,3 +8,6 @@
 3. Create ApI to load user profile info based upon email .
 
      email =>    data return 
+
+4. Please mplement Api rate limitter concept using pacakge : express-rate-limit.
+   * From same IP only 5 hit is allowed in 2 min window .
