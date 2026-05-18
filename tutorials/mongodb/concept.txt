@@ -1,0 +1,89 @@
+What is MongoDB?
+
+MongoDB is a NoSQL, document-oriented database designed to store and manage large amounts of 
+unstructured or semi-structured data.
+
+Instead of storing data in rows and tables like traditional relational databases,
+ MongoDB stores data in JSON-like documents called BSON (Binary JSON).
+
+Example:
+
+{
+  "name": "Rahul",
+  "age": 22,
+  "course": "BCA",
+  "address":{
+    "permanent":"patna",
+    "temporary":"delhi"
+  },
+  "college":{
+    "name":"St.Marry",
+    "address:"patna",
+    "type":"private"
+  }
+}
+
+
+Features of MongoDB:
+
+1. Document-Oriented Storage
+Data is stored as documents instead of tables.
+Documents are easy to read and modify.
+Similar to JSON format.
+
+{
+  "product": "Laptop",
+  "price": 50000
+}
+
+2. Schema-less Database
+No fixed structure is required.
+Different documents in the same collection can have different fields.
+
+{ "name": "Amit" }
+
+{ "name": "Priya", "age": 20 }
+
+3. Scalability
+
+MongoDB supports horizontal scaling using sharding.
+
+This means:
+
+Data can be distributed across multiple servers.
+Helps handle very large datasets and traffic.
+
+4. Indexing Support
+
+MongoDB supports indexes for faster searching.
+
+Types include:
+
+Single field index
+Compound index
+Text index
+Geospatial index
+
+5. Aggregation Framework
+
+MongoDB provides powerful data processing and analytics tools.
+
+Used for:
+
+Filtering
+Grouping
+Sorting
+Calculations
+
+6. Cloud Support
+
+MongoDB provides cloud database services through:
+
+MongoDB Atlas
+
+Features:
+
+Automated backups
+Monitoring
+Global deployment
+Security tool
