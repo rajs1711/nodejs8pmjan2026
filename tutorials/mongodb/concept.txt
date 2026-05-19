@@ -87,3 +87,60 @@ Automated backups
 Monitoring
 Global deployment
 Security tool
+
+
+===============
+comparison
+===============
+SQL => database => table => rows/columns 
+
+mongodb => datatbase => collections => document 
+
+================================================
+MongoDB Cheat Sheet:
+
+
+
+1. show dbs;  => to display all databases 
+2. use <dbnam> =>
+     use nodejs830pm ; => helps to switch from one database
+                          to other or if the db is available it will create new db and switch to that db .
+
+
+Note: To show yoor new  database  in DB list =>your database have at least one collection .
+
+3. Create Collection :
+    db. createCollection('students');
+
+4. Data Insert under collection 
+   A. Single Insert
+=================INSERT ======================
+    db.students.insert({
+        Name:"Raj",
+        Mobile:82102023331,
+        Email:abbsv@gmail.com
+    });
+
+   B. Multiple insert  
+
+    db.students.insertMany(
+        [
+        {
+        Name:"Amit",
+        Mobile:82102023331,
+        Email:abbsv@gmail.com
+        },
+        {
+        Name:"Summet",
+        Mobile:82102023331,
+        Email:abbsv@gmail.com
+        }
+        ]
+    );   
+
+    Note: whenever a document inserted in your collection , mongodb assign a unique _id to every document .
+==============SELECT ALL DATA=============================
+
+5. To list (show) all data in collection:
+   sql => select * from students ;
+   Mongodb=>db.students.find();
