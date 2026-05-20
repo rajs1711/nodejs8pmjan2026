@@ -144,3 +144,67 @@ Note: To show yoor new  database  in DB list =>your database have at least one c
 5. To list (show) all data in collection:
    sql => select * from students ;
    Mongodb=>db.students.find();
+
+===========To SELECT PARTICULAR FILED===============
+6. To List all data in collection but we want only name and email .
+sql => select name ,email from users ;
+mongodb => db.users.find({},{name:1,email:1})
+
+note: mongodb return _id key by default if you now want this _id key in your response then forecfully set it to 0;
+
+===========To HIDE _ID field=====================
+db.users.find({},{name:1,email:1,_id:0})
+
+========Implement where Condition========
+7. WAQ to find user details where name is saurav .
+sql => select * from users where name='saurav';
+mongodb => db.users.find({name:'saurav'})
+
+8. WAQ to find user email and mobile whose name is saurav .
+
+sql => select email , mobile from users where name='saurav'
+mongodb => db.users.find({name:'saurav'},{email:1,mobile:1,_id:0})
+
+=======Implemet Not Equals to operator =============
+9. wAQ to find users details whose mobile not equal to 8210202331 .
+
+sql=>select * from users where mobile !='8210202331'
+
+mongodb =>db.users.find({
+  mobile:{$ne:'8210202331'}
+})
+
+note: $ne => this is not equals to operator.
+
+==========Implement  And condition=========
+
+10. WAQ to find users details whose name is saurav and mobile is 8210202331
+
+sql => select * from users where name='saurav' and mobile='8210202331'
+mongodb => db.users.find(
+
+  {
+    name:'saurav',
+    mobile:'8210202331',
+  }
+)
+
+11. WAQ to find users details whose name is saurav and address is not patna .
+
+sql => select * from users where name ='saurav' and address <>'patna'
+mongodb => db.users.find(
+  {
+    name:'saurav',
+    address:{$ne:'patna'}
+  }
+)
+=============greater than operator ========
+12. WAQ to find users details whose age is greater then 28.
+
+sql => select * from users where age > 28.
+monogod => db.users.find(
+   {
+    age:{$gt:28}
+   }
+
+)
