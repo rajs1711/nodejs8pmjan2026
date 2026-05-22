@@ -208,3 +208,92 @@ monogod => db.users.find(
    }
 
 )
+===greater than equals =======
+13. WAQ to find student details whose age is 28 or greater than 28 .
+sql => select 8 from users where age >=28 ;
+mongodb =>db.users.find(
+  {
+    age:{$gte:28}
+  }
+)
+====== less than equals to =====
+13. WAQ to find student details whose age is 28 or less than 28 .
+sql => select 8 from users where age >=28 ;
+mongodb =>db.users.find(
+  {
+    age:{$lte:28}
+  }
+)
+
+======between =======
+14. WAQ to find users details whose age is between 28 and 32.
+
+sql=> select * from users where age >28 and age <32 .
+mongodb => db.users.find(
+  {
+    age:{$gt:28 ,$lt:32 }
+  }
+)
+========OR=====================
+16 . WAQ to find student details whose age is 22 or 28 or 32 or 34 .
+
+sql=> select * from users where age =22 or age=28 or age=32 or age=34 
+      select * from users where age in(22,28,32,34)
+
+mongodb => db.users.find(
+        
+        {
+            $or:[
+               {age :22},
+               {age :28},
+               {age:32},
+               {age:34}
+            ]
+
+        }
+
+)
+
+17 . WAQ to find users who belongs to delhi or patna 
+
+ sql => select 8 from users where address ='patna' or address='delhi'
+
+ mongodb= db.users.find({
+        $or:[
+             {address:'patna'},
+             {address:'delhi'}
+        ]
+ });
+
+ 
+ 18. WAQ to find users details department is CS and AI and address is 'patna'
+
+sql => select * from users where department='CS' and department='AI' and address='patna'
+
+momgodb =>  db.users.find(
+  {
+       $and:[
+          {department:'CS'},
+          {department:'AI'},
+          {adddress:'Patna'}
+       ]
+
+  }
+)
+
+19.  WAQ to find users details department is CS and address is 'patna ' OR Branch is 'global'
+
+sql=> select  * from users where (department='CS' and address='patna') OR branch='global';
+
+mongodb=> db .users.find({
+     $or:[
+         {branch:'global'},
+         {
+            $and:[
+              {department :'CS'},
+              {address : patna'}
+          ]
+         }
+     ]
+})
+
