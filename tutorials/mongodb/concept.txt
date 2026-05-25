@@ -297,3 +297,83 @@ mongodb=> db .users.find({
      ]
 })
 
+20. WAQ to find movie whose runtime is greater than 120 minutes or released in year 
+    2024.
+    Note: colleaction: movies keys: runtime , release_year .
+
+    sql => select * from movies where runtime >120 or  release_year=2024; 
+    mongodb =>db.movies.find({
+        $or:[
+           {runtime:{$gt:120}},
+           {release_year:2024}
+        ]
+    });
+
+21. WAQ to find users whose age in 24, 26 ,28 
+sql => select * from users where age in(24,26,28)
+mongodb=> db.users.find({
+   age:{$in:[24,26,28]}
+});
+=====in=========
+22. WAQ to find users whose age in 24,26,28 and address='patna';
+
+sql => select * from users where age in [24,26,28] and address='patna'
+
+mongodb=> db.users.find({
+      
+      $and:[
+          { age : {$in:[24,26,28]}},
+          {address:'patna'}
+      ]
+})
+====not in====
+23. WAQ to find users details whose age not in 24,26,28
+
+sql => select * from users where age not in[24,26,28];
+mongodb=> db.users.find({
+  age:{$nin:[24,26,28]}
+})
+==== exists======
+
+24. WAQ to find users details whose age not in 24,26,28 
+ note: age key should be checked first .
+
+ mongodb=> db.users.find({
+        $and:[
+            {age:{$exists:true}},
+            {age:{$nin:[24,26,28]}}
+        ]
+        
+ })
+
+=====sorting======
+
+25. WAQ to find user details order by age descending.
+
+sql=> select * from users order by age desc;
+mongodb=> db.users.find({
+      age:{$exists:true}
+}).sort(age:-1)
+
+26.WAQ to find products where cateogry='mobile' and brand='samsung' order by price high to low.
+
+sql=> select name, brand, price , availablity  from products where cateogry='mobile' and brand='samsung' order by price desc .
+
+mongodb=> db.products.find({
+     $and:[
+       {cateogry:'mobile'},
+       {brand:'samsung'},
+       {price:{$exists:true}}
+     ]
+}).sort({price:-1});
+
+====limitation======
+27: WAQ to find top 5 users.
+
+mongodb=> db.users.find().limit(5)
+
+28. WAQ to find next five users (using skip and limit)
+
+mongodb => db.users.find().skip(5).limit(5)
+
+
