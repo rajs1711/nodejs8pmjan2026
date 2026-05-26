@@ -377,3 +377,57 @@ mongodb=> db.users.find().limit(5)
 mongodb => db.users.find().skip(5).limit(5)
 
 
+===sub document query===
+29. WAQ to find users details whose permanent address is patna .
+mongodb=> db.users.find({
+    address.permanent:'patna'
+})
+=======$all=========
+30. WAQ to find users details whose non-acdemic course contain python.
+mongodb => db .users.find({
+  'course.non_academic':{$all:['python']}
+})
+
+31. WAQ to find users details whose non-acdemic course contain java and nodejs
+mongodb => db .users.find({
+  'course.non_academic':{$all:['java','nodejs']}
+})
+==== array index match========
+32. WAQ to find users details whose non_academic course contain nodejs in second position.
+mongodb=> db.users.find({
+  'course.non_academic.1':'nodejs'
+})
+=====$ne====
+
+33. WAQ to find users details whose non_academic course not contain nodejs in second position.
+
+mongodb=> db.users.find({
+  'course.non_academic.1':{$ne:'nodejs'}
+})
+
+34. WAQ to find users details whose non_academic course not contain nodejs in second position.
+    (strictly check course have non_academic course)
+
+mongodb=> db.users.find({
+   $and :[
+      {'course.non_academic':{$exists:true}},
+      {'course.non_academic.1':{$ne:'nodejs'}}
+   ]
+})
+
+35. WAQ to find users details whose non_academic course contain 'nodejs' and name is 'khusi or swati'
+
+mongodb=>db.users.find({
+      $and:[
+           {
+             'course.non_academic':{$all:['nodejs']}
+           },
+           {
+              $or:[
+                {name:'khusi'},
+                {name:'Swati'}
+              ]
+           }
+
+      ]
+})
