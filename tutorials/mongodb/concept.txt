@@ -431,3 +431,9 @@ mongodb=>db.users.find({
 
       ]
 })
+
+
+=====================
+Aggregation Pipeline
+=====================
+Link: https://excalidraw.com/#json=68EgKkbwvC-CSmTqivybF,hoSV6dcdBfCgEngSgzWI7w
