@@ -437,3 +437,71 @@ mongodb=>db.users.find({
 Aggregation Pipeline
 =====================
 Link: https://excalidraw.com/#json=68EgKkbwvC-CSmTqivybF,hoSV6dcdBfCgEngSgzWI7w
+
+====group====
+
+36. WAQ to find total users in each temporary address .
+db.users.aggregate(
+  {
+    $group:{
+      _id:'$addresss.temporary',
+      totalusers:{$sum:1} // $sum:1 helps to give you count 
+    }
+  }
+)
+
+37. WAQ to find total order amount placed by each user.
+
+db.orders.aggregate(
+  {
+    $group:{
+      _id:'$user_email',
+      total_order_amount:{$sum:'$order_total'}
+    }
+  }
+)
+
+38.WAQ to find total order amount placed by each user and also count total product user order 
+
+db.orders.aggregate(
+    {
+      $group:{
+        _id:'$user_email',
+        total_order_amount:{$sum:'$order_total'},
+        total_product_count:{$sum:'$quanity'}
+      }
+    }
+)
+
+39.WAQ to find total order amount placed by each user and also count total product user order 
+    also find total order placed.
+
+db.orders.aggregate(
+    {
+      $group:{
+        _id:'$user_email',
+        total_order_amount:{$sum:'$order_total'},
+        total_product_count:{$sum:'$quanity'},
+        total_order_placed:{$sum:1}
+      }
+    }
+)
+
+=====$match to implement condition=========
+34. WAQ to find total order amount placed by  user swati group by productid
+
+db.orders.aggregate(
+  {
+    $match:{
+      user_email:'swati@gmail.com'
+    }
+  },
+
+  {
+    $group:{
+      _id:'$productid',
+      total_order_placed:{sum:'$order_total'}
+    }
+
+  }
+)
