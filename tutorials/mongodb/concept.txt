@@ -491,6 +491,7 @@ db.orders.aggregate(
 34. WAQ to find total order amount placed by  user swati group by productid
 
 db.orders.aggregate(
+  [
   {
     $match:{
       user_email:'swati@gmail.com'
@@ -504,4 +505,93 @@ db.orders.aggregate(
     }
 
   }
+  ]
 )
+==================Getting data from two different collection in a single query =============
+Note; whenever you perform join operations between collections you try to find out common key 
+in both the collection .
+
+
+40. WAQ to find user details alongside orders details by that user.
+     Note: user and order collections in connected by user-> email and orders ->user_email.
+
+     db.users.aggregate(
+      [
+        {
+            $lookup:{
+              from:"orders",
+              localField:"email",  // users collection email key 
+              foreignField:"user_email", // orders collection email key 
+              as:"order_details"  // key which is use to show data from foreign collection in out case order collection data 
+            }
+        }
+
+
+      ]
+     )
+
+=======$unwind======
+Note:The MongoDB $unwind aggregation stage deconstructs an array field from the 
+input documents to output a single document for each element in that array. 
+If an input document contains an array with three items, 
+$unwind expands it into three separate documents
+
+41. WAQ to find user details alongside orders details by that user and show result like 
+    for each order we want user details as a sperate document. 
+    means destrcuture orders array into seperate document .
+
+    db.users.aggregate(
+      [
+        {
+            $lookup:{
+              from:"orders",
+              localField:"email",  // users collection email key 
+              foreignField:"user_email", // orders collection email key 
+              as:"order_details"  // key which is use to show data from foreign collection in out case order collection data 
+            }
+        },
+        {
+          $unwind:"$order_details"
+        }
+
+
+      ]
+     )
+
+======$project======
+
+42. WAQ to find user details alongside orders details by that user. 
+  Find user email , name , mobile and temporary address and from orders find orderid , productid, quanntity and price 
+
+  db.users.aggregate(
+      [
+        {
+            $lookup:{
+              from:"orders",
+              localField:"email",  // users collection email key 
+              foreignField:"user_email", // orders collection email key 
+              as:"order_details"  // key which is use to show data from foreign collection in out case order collection data 
+            }
+        },
+        {
+          $unwind:"$order_details"
+        },
+        {
+          $project:{
+            _id:0,
+            email:1,
+            name:1,
+            mobile:1,
+            'address.temporary':1,
+            orderid:"$order_details.orderid",
+            productid:"$order_details.productid",
+            quanity:"$order_details.quanity",
+            order_total_amount:"$order_details.order_total"
+
+          }
+        }
+
+
+
+      ]
+     )
