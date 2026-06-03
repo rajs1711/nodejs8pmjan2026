@@ -590,8 +590,169 @@ $unwind expands it into three separate documents
 
           }
         }
+      ]
+     )
 
 
+43.WAQ to find user details alongside orders details by that user. 
+  Find user email , name , mobile and temporary address and from orders find orderid , productid, quanntity and price 
+  Also find product details (name and cateogry)
 
+
+  
+  db.users.aggregate(
+      [
+        {
+            $lookup:{
+              from:"orders",
+              localField:"email",  // users collection email key 
+              foreignField:"user_email", // orders collection email key 
+              as:"order_details"  // key which is use to show data from foreign collection in out case order collection data 
+            }
+        },
+        {
+          $unwind:"$order_details"
+        },
+        {
+          $lookup:{
+            from:"products",
+            localField:"order_details.productid",
+            foreignField:"productid",
+            as:"product_details"
+          }
+        },
+
+        {
+          $project:{
+            _id:0,
+            email:1,
+            name:1,
+            mobile:1,
+            'address.temporary':1,
+            orderid:"$order_details.orderid",
+            productid:"$order_details.productid",
+            quanity:"$order_details.quanity",
+            order_total_amount:"$order_details.order_total",
+            product_name:"$product_details.name",
+            product_cateogry:"$product_details.cateogry"
+
+          }
+        }
+      ]
+     )
+
+
+45.WAQ to find user details alongside orders details by that user. 
+  Find user email , name , mobile and temporary address and from orders find orderid , productid, quanntity and price 
+  Also find product details (name and cateogry) also sort order in descending order by order_total.
+  Note: find top 3 orders only .
+
+
+  
+  db.users.aggregate(
+      [
+        {
+            $lookup:{
+              from:"orders",
+              localField:"email",  // users collection email key 
+              foreignField:"user_email", // orders collection email key 
+              as:"order_details"  // key which is use to show data from foreign collection in out case order collection data 
+            }
+        },
+        {
+          $unwind:"$order_details"
+        },
+        {
+          $lookup:{
+            from:"products",
+            localField:"order_details.productid",
+            foreignField:"productid",
+            as:"product_details"
+          }
+        },
+
+        {
+          $project:{
+            _id:0,
+            email:1,
+            name:1,
+            mobile:1,
+            'address.temporary':1,
+            orderid:"$order_details.orderid",
+            productid:"$order_details.productid",
+            quanity:"$order_details.quanity",
+            order_total_amount:"$order_details.order_total",
+            product_name:"$product_details.name",
+            product_cateogry:"$product_details.cateogry"
+
+          }
+        },
+        {
+            $sort:{order_total_amount:-1}
+        },
+        {
+          $limit:3
+        }
+        
+      ]
+     )
+
+Note: above joins are example of left joins:
+
+45.WAQ to find user details alongside orders details by that user. 
+  Find user email , name , mobile and temporary address and from orders find orderid , productid, quanntity and price 
+  Also find product details (name and cateogry) also sort order in descending order by order_total.
+  Note: find top 3 orders only .
+
+  Note: make sure it works as inner join , means orders details comes only when procuts data is avaialble 
+
+    db.users.aggregate(
+      [
+        {
+            $lookup:{
+              from:"orders",
+              localField:"email",  // users collection email key 
+              foreignField:"user_email", // orders collection email key 
+              as:"order_details"  // key which is use to show data from foreign collection in out case order collection data 
+            }
+        },
+        
+        {
+          $unwind:"$order_details"
+        },
+        {
+          $lookup:{
+            from:"products",
+            localField:"order_details.productid",
+            foreignField:"productid",
+            as:"product_details"
+          }
+        },
+         {
+          $match:{"$product_details":{$ne:[]}}   // this is use to implement inner join 
+         }
+        {
+          $project:{
+            _id:0,
+            email:1,
+            name:1,
+            mobile:1,
+            'address.temporary':1,
+            orderid:"$order_details.orderid",
+            productid:"$order_details.productid",
+            quanity:"$order_details.quanity",
+            order_total_amount:"$order_details.order_total",
+            product_name:"$product_details.name",
+            product_cateogry:"$product_details.cateogry"
+
+          }
+        },
+        {
+            $sort:{order_total_amount:-1}
+        },
+        {
+          $limit:3
+        }
+        
       ]
      )
