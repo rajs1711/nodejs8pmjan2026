@@ -756,3 +756,154 @@ Note: above joins are example of left joins:
         
       ]
      )
+===========FACET=====
+This gives benifit to run mutliple Pipeline in single query 
+46. WAQ to find 5 records after skiping 5 records  and also count total documnets 
+
+ db.users.find().skip(5).limit(5);
+
+ db.users.countDcouments();
+
+ Instead of writing to seperate for single purpose we can use facet which helps to run two query in single hit.
+
+db.users.aggregate([
+   {
+    $facet:{
+
+      data:[
+        {skip:5},
+        {limit:5}
+      ],
+      totalDcoumentCount:[
+        {$count:"count"}
+      ]
+
+    }
+   }
+
+])
+
+47. WAQ to find total order amount placed by each user and total orders in system also byfuragte orders with status 
+   
+db.orders.aggregate([
+  {
+    $facet:{
+      OrdersPlacedByEachUser:[
+        {$group:{
+              _id:'$user_email',
+              total_order_amount:{$sum:'$order_total'}
+          }
+        }
+      ],
+      TotalOrdersInSytem:[
+        {$count:"count"}
+      ],
+      Orders:[
+        {
+          $group:{
+            _id:'$status',
+            total_count:{$sum:1}
+          }
+        }
+      ],
+      PendingOrder:[
+        {$match:{"status":"pending"}},
+        {$count:"count"}
+      ],
+      CompletedOrder:[
+         {$match:{"status":"completed"}},
+        {$count:"count"}
+      ]
+
+    }
+  }
+  
+])
+
+
+
+48.WAQ to find total order amount placed by each user and total orders in system also 
+byfuragte orders with prpduct name and count completd order pending order  
+   
+
+db.orders.aggregate([
+  {
+    $facet:{
+      OrdersPlacedByEachUser:[
+        {$group:{
+              _id:'$user_email',
+              total_order_amount:{$sum:'$order_total'}
+          }
+        }
+      ],
+      TotalOrdersInSytem:[
+        {$count:"count"}
+      ],
+      OrdersByProductName:[
+        {
+          $lookup:{
+            from:"products",
+            localField:"productid",
+            foreignField:"productid",
+            as:"product_details"
+          }
+        },
+        {
+          $unwind:'$product_details'
+        },
+        {
+          $group:{
+            _id:'$product_details.name',
+            total_count:{$sum:1}
+          }
+        }
+      ],
+      PendingOrder:[
+        {$match:{"status":"pending"}},
+        {$count:"count"}
+      ],
+      CompletedOrder:[
+         {$match:{"status":"completed"}},
+        {$count:"count"}
+      ]
+
+    }
+  }
+  
+])
+===================UPDATE QUERY ===========
+
+====UPDATE ONE ====== This will update only single document which meets your condition 
+50.WAQ to update product name and it's price .
+
+db.products.updateOne(
+  {productid:1001},// condition
+  {$set:{          // list of keys which we have to update 
+   price:120000,    
+   name:"macbook-m4"
+  }}
+)
+
+====Update Many === this will update all documents which meets the condition .
+
+db.products.updateMany(
+  {productid:1001},// condition
+  {$set:{          // list of keys which we have to update 
+   price:120000,    
+   name:"macbook-m4"
+  }}
+)
+
+===========DELETE ====
+
+db.users.deleteOne({name:"samsung"})
+db.users.deleteMany({name:"samsung"})
+
+
+
+
+
+
+
+
+
