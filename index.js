@@ -1,6 +1,7 @@
 const express= require('express')// include or require express package in your program
 const app=express()// intiate expres app object
 const { ValidationError } = require('express-validation')
+const connectDB=require('./config/db')
 
 // Middleware: parse JSON request bodies
 app.use(express.json())
@@ -26,4 +27,5 @@ app.use(function(err, req, res, next) {
 //setup express server.
 app.listen(port,()=>{
     console.log(`Server started at Port number :${port}`);
+    connectDB();
 })

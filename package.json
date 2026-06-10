@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/rajs1711/nodejs8pmjan2026#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "express": "^5.2.1",
-    "express-validation": "^4.1.1"
+    "express-validation": "^4.1.1",
+    "mongoose": "^9.7.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
