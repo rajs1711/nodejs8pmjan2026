@@ -1,6 +1,7 @@
 const checkorderstatus=async(req,res)=>{
 
     try{
+        console.log(req.user_info);
         const {ordernumber}=req.query;
 
         if(!ordernumber){

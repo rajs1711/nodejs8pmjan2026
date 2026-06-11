@@ -1,5 +1,7 @@
 const signupModel=require('../models/signupModel');
 const bcrypt=require('bcrypt');
+const jwt=require('jsonwebtoken');
+
 const signupFunction=async(req,res)=>{
 
     try{
@@ -63,16 +65,53 @@ const loginFunction=async(req,res)=>{
     try{
         const {email,password}=req.body
         
-        console.log(email,password);
+        // logic for login 
+        
+        const user=await signupModel.findOne({email:email});
 
-        res.json({
-            "msg":"Login successfull",
-            "data":{"email":email},
-            "status":200
-        });
+        if(user)
+         {
+            const user_password=await bcrypt.compare(password,user.password);
+   
+            if(user_password){
+               // logic to generate token for this user 
+              const SECRET_KEY='uns77^^*hsjjs';
+
+              const user_data={
+                email:user.email,
+                mobile:user.mobile
+              }
+              const expiry={expiresIn:"24h"}
+              //generate token 
+              const token=jwt.sign(user_data,SECRET_KEY,expiry);
+
+               return  res.json({
+                "msg":"Login successfull",
+                "data":null,
+                "token":token,
+                "status":200
+            });
+
+            }else{
+                return res.json({
+                    "msg":"Invalid password",
+                    "status":400,
+                    "data":null
+                })
+            }
+
+         }else{
+            return res.json({
+                "msg":"Invalid email, Invalid user ",
+                "status":400,
+                "data":null
+            })
+         }        
+
+
 
     }catch(error){
-        res.json({
+        return res.json({
             "msg":"Internal Server Error",
             "data":null,
             "status":500
