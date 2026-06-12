@@ -13,7 +13,10 @@ const port=3000
 
 app.use('/api',require('./routes/authroutes'));
 app.use('/api',require('./routes/orderRoutes'));
- 
+app.use('/api',require('./routes/productsroutes'));
+app.use('/api',require('./routes/dashboardroutes'));
+
+
 // error registration 
 app.use(function(err, req, res, next) {
     if (err instanceof ValidationError) {

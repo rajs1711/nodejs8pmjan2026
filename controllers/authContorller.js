@@ -118,4 +118,28 @@ const loginFunction=async(req,res)=>{
         });
     }
 }
-module.exports={signupFunction,loginFunction}
+
+const changePassword=async(req,res)=>{
+   try{
+     console.log('hello')
+   }catch(err){
+    res.json({
+        "msg":"Interna Server Error",
+        "status":500
+    });
+   }
+}
+
+const getUserProfile=async(req,res)=>{
+    try{
+        console.log('hello')
+    }catch(err){
+        res.json({
+            "msg":"Interna Server Error",
+            "status":500
+        });
+    }
+ }
+
+
+module.exports={signupFunction,loginFunction,changePassword,getUserProfile}

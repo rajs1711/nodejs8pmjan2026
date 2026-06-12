@@ -1,4 +1,4 @@
-const checkorderstatus=async(req,res)=>{
+const OrderHistory=async(req,res)=>{
 
     try{
         console.log(req.user_info);
@@ -45,5 +45,16 @@ const checkorderstatus=async(req,res)=>{
         });
     }
 }
+const createOrder=async(req,res)=>{
 
-module.exports={checkorderstatus}
+    try{
+        console.log('hello');
+        
+    }catch(error){
+        res.json({
+            "msg":"Interna Server Error",
+            "status":500
+        });
+    }
+}
+module.exports={OrderHistory,createOrder}

@@ -11,5 +11,6 @@ const router=express.Router();
 //vaidation using express validation package
 router.post('/signup',validate(signupValidation,{},{}),authContorller.signupFunction);
 router.post('/login',validate(loginValidation,{},{}),authContorller.loginFunction);
-
+router.post('/changepassword',validate(loginValidation,{},{}),authContorller.changePassword);
+router.post('/getuserprofile',validate(loginValidation,{},{}),authContorller.getUserProfile);
 module.exports=router;
