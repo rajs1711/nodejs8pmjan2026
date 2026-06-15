@@ -6,10 +6,17 @@ const {veirfyToken}=require('../middlewares/tokenValidation');
 const {productValidation}=require('../middlewares/datavalidation/productValidation');// express-validatio package validation module
 
 const { validate } = require('express-validation');// validation package
+
+const uploadHandler = require('../middlewares/uploadcloudinary');
+
+
+
 //pricate api
 router.post('/admin/createproduct',veirfyToken,validate(productValidation,{},{}),productController.createProduct);
 router.get('/admin/getallproducts',veirfyToken,productController.getAllProducts);
 router.get('/admin/getproductbyid',veirfyToken,productController.getProductById);
+router.post('/admin/uploadproductimage',veirfyToken,uploadHandler,productController.uploadProductImage);
+
 
 //public api
 router.get('/getallproducts',productController.listProduct);

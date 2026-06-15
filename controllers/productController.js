@@ -86,6 +86,22 @@ const getProductdetailsById=async(req,res)=>{
     }
 }
 
+const uploadProductImage=async(req,res)=>{
+    //const{productcode}=req.body
+    const result=await productModel.updateOne(
+        { code:'PROD260.18377845480050914'},          // filter
+        { $set: 
+            
+            { 
+                productThumbnail: req.productThumbnail
+            } 
+        
+        } // update
+        );
+
+return res.json({"product_url":req.productThumbnail,"msg":"Product image Updated successfully"})
+}
 
 
-module.exports={createProduct ,getAllProducts,getProductById,listProduct,getProductdetailsById}
+
+module.exports={createProduct ,getAllProducts,getProductById,listProduct,getProductdetailsById,uploadProductImage}

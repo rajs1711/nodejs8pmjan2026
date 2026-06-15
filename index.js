@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express= require('express')// include or require express package in your program
 const app=express()// intiate expres app object
 const { ValidationError } = require('express-validation')
