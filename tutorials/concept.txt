@@ -218,3 +218,34 @@ Middleware : =>middleware is a concept which works betwwen your route and contro
 
 
 
+
+
+===================
+
+Frontend  => react JS => next frame work 
+
+html + css +bootsrap +tailwind  (UI)=> design 
+
+API integration + data processing  + case handling + logical scenario + cookies +session +validation
+
+React -> using express 
+
+1. JSX 
+2. PROPS 
+3. COMPONENT 
+4. STATE MANAGEMENT 
+5. EVENT handling
+6. Conditional Rednering
+7. List and keys 
+8. HOOKS and Imports HOOKS
+9. FORMS
+10. Gloabl Variable - context API 
+11. Routing 
+12. API integrationn
+13. performace optiimization .....
+
+
+
+
+  
+

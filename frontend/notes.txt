@@ -1,0 +1,45 @@
+NEXT- SETUP / PRoject installation:
+npx create-next-app@latest my-app
+
+# To run react programme 
+use this command
+npm run dev
+
+COMPONENT
+============
+In nextjs/ react js a COMPONENT' is a reusable piece of UI built with React , 
+Componnent helps you organize
+your coe into smaller maintainable parts.
+
+forexample:   form component , button compoent , navbar compoents 
+
+In react we have two types of comoponent:
+  1. Functional Component 
+  2. Class Component (not used now ) now works which is done by class compoent handles by hooks
+
+  for Example:
+
+  // compoenents/Button.js
+
+  export default function Button(){
+    return <button>Click Me</button>
+  }
+
+  Use in page 
+
+  import Button from "../comoponent/Button"
+
+  export default function Home(){
+      return (
+
+        <>  <!-- React fragemnet -->
+           <h1>Hello Welcome to out Portal </h1>
+           <Button/>
+           <Button/>
+        </>
+       
+      )
+  }
+
+  Note: if your return html more than one line then your html code should be encapuslated in 
+  return(html code)

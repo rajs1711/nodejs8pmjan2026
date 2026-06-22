@@ -40,7 +40,16 @@ const createProduct=async(req,res)=>{
 const getAllProducts=async(req,res)=>{
 
     try{
-        
+        const prodcuts= await productModel.find({
+        },{_id:0,name:1,price:1,cateogry:1,code:1,productThumbnail:1});
+
+        if(prodcuts){
+            return res.json({
+                "msg":"Product list fetched successfully",
+                "data":prodcuts,
+                "status":200
+            })
+        }
     }catch(error){
         res.json({
             "msg":"Interna Server Error",
@@ -51,9 +60,23 @@ const getAllProducts=async(req,res)=>{
 
 
 const getProductById=async(req,res)=>{
-
     try{
-        
+        const {pid}=req.query;
+        const product=await productModel.find({code:pid});
+        console.log(product)
+        if(product.length >0){
+            res.json({
+                "msg":"Product found successfully",
+                "data":product,
+                "status":200
+            });
+        }else{
+            res.json({
+                "msg":"Data not Found",
+                "status":400
+            });
+        }
+
     }catch(error){
         res.json({
             "msg":"Interna Server Error",
