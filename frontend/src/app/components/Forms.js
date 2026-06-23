@@ -1,19 +1,15 @@
-import Button from "./Button"
-export default function Forms(){
+
+import Button from "./formcomponents/Button"
+import InputBox from "./formcomponents/inputBox"
+export default function Forms(props){
 
     return (
 
         <>
-           <div>
-           <h2>Create Account</h2>
+           <div className="marginprop">
+           <h2>{props.formHeader} </h2>
               <form action="#" method="POST">
-                <input type="text" name="fullname" placeholder="Full Name" required />
-
-                <input type="email" name="email" placeholder="Email Address" required />
-
-                <input type="password" name="password" placeholder="Password" required />
-
-                <input type="password" name="confirm_password" placeholder="Confirm Password" required />
+                <InputBox type={props.type} inputname={props.inputname} placeholder={props.placeholder}/>
                 <Button/>
                 
             </form>

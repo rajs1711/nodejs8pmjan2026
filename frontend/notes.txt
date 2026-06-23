@@ -43,3 +43,10 @@ In react we have two types of comoponent:
 
   Note: if your return html more than one line then your html code should be encapuslated in 
   return(html code)
+
+
+  #props:
+  Props(short of properties) are used to pass date from a parent component to a child component.
+  it makes compoenents reusable and dynamic  and it is read only (it means can not be modified inside child component)
+
+  
