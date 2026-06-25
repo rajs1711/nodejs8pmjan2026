@@ -1,3 +1,4 @@
+import Link from "next/link"
 export default function Navbar(){
     return(
 
@@ -5,14 +6,12 @@ export default function Navbar(){
            
            <nav>
                 <div class="navbar">
-                    <div class="logo">MyWebsite</div>
+                    <div class="logo"><Link href="/" className="logocolor">ShopEasy</Link></div>
 
                     <ul class="nav-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Sign Up</a></li>
+                        <li><Link href="/">Home</Link></li>
+                        <li><Link href="/signup">SignUp</Link></li>
+                        <li><Link href="/login">SignIn</Link></li>
                     </ul>
                 </div>
            </nav>
