@@ -1,5 +1,28 @@
 import Link from "next/link"
 export default function Navbar(){
+    const navlinks=[
+        {
+        id:1,
+        label:"Home",
+        src:"/"
+        },
+        {
+        id:2,
+        label:"Signup",
+        src:"/signup"
+       },
+       {
+        id:3,
+        label:"SignIn",
+        src:"/login"
+       },
+       {
+        id:4,
+        label:"AboutUs",
+        src:"#"
+       }
+    ];
+
     return(
 
         <>
@@ -9,9 +32,13 @@ export default function Navbar(){
                     <div class="logo"><Link href="/" className="logocolor">ShopEasy</Link></div>
 
                     <ul class="nav-links">
-                        <li><Link href="/">Home</Link></li>
-                        <li><Link href="/signup">SignUp</Link></li>
-                        <li><Link href="/login">SignIn</Link></li>
+                       {
+                        navlinks.map((nav)=>(
+                          <li key={nav.id}><Link href={nav.src}>{nav.label}</Link></li>
+                        ))
+                       }
+                        
+
                     </ul>
                 </div>
            </nav>

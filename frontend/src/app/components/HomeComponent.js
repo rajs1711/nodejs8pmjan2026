@@ -49,7 +49,7 @@ export default function HomeComponent(){
             name: "Laptop Backpack",
             price: "$59",
             image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-          },
+          }
 
 
       ];
@@ -64,18 +64,28 @@ export default function HomeComponent(){
       </section>
 
       <div className="productGrid">
-        {products.map((product) => (
+
+        {
+          products.map((product)=>(
+
           <div key={product.id} className="productCard">
             <img
               src={product.image}
-              alt={product.name}
+             
               className="productImage"
             />
             <h3 className="productName">{product.name}</h3>
             <p className="productPrice">{product.price}</p>
             <button className="buyButton">Add to Cart</button>
           </div>
-        ))}
+
+          ))
+        }
+
+
+
+
+   
       </div>
     </div>
         </>
