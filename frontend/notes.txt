@@ -49,4 +49,24 @@ In react we have two types of comoponent:
   Props(short of properties) are used to pass date from a parent component to a child component.
   it makes compoenents reusable and dynamic  and it is read only (it means can not be modified inside child component)
 
-  
+  #Hooks :
+  ====
+
+  Ract hooks are special functions that let you use react features like state,lifecycle methods,
+  context in functional components .
+
+  Why hooks ?
+   
+   before Hooks only class component can handle state of data , or reuse statefull logics.
+
+   Hooks amkes functional comoponents simpler , cleaner and easier to reuse .
+
+
+   Common Hooks:
+   ----------
+
+   1.useState: used to sadd state to a functioal component .
+   2.useEffect:  use to perform side effect like .
+                fetching data 
+                updating DOM 
+                calling APIs
