@@ -1,4 +1,26 @@
+"use client"
+import { useState ,useEffect } from "react";
 export default function HomeComponent(){
+   //hooks concept 
+   const [count ,setCount]=useState(0); // count is varaible name setCount is function 
+   // which helps to update count varaible value  and here 0 is by default value of count
+   
+
+function test(){
+ 
+ setCount(10)
+  console.log(count)
+
+}
+
+useEffect(()=>{
+   console.log("page render ")
+   console.log('Api Call')
+},[])
+
+   
+
+
     const products = [
         {
           id: 1,
@@ -56,7 +78,7 @@ export default function HomeComponent(){
 
     return(
         <>
-    <div className="home">
+    {/* <div className="home">
 
       <section className="hero">
         <h2>Featured Products</h2>
@@ -87,7 +109,10 @@ export default function HomeComponent(){
 
    
       </div>
-    </div>
+    </div> */}
+     <h1>{count}</h1>
+     <button onClick={()=>setCount(count+1)}>Increment</button>
+    <button onClick={()=>test()}>clickme</button>
         </>
 
     )

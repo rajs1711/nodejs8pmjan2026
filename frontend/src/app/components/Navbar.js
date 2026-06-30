@@ -28,10 +28,10 @@ export default function Navbar(){
         <>
            
            <nav>
-                <div class="navbar">
-                    <div class="logo"><Link href="/" className="logocolor">ShopEasy</Link></div>
+                <div className="navbar">
+                    <div className="logo"><Link href="/" className="logocolor">ShopEasy</Link></div>
 
-                    <ul class="nav-links">
+                    <ul className="nav-links">
                        {
                         navlinks.map((nav)=>(
                           <li key={nav.id}><Link href={nav.src}>{nav.label}</Link></li>
