@@ -66,7 +66,9 @@ In react we have two types of comoponent:
    ----------
 
    1.useState: used to sadd state to a functioal component .
-   2.useEffect:  use to perform side effect like .
-                fetching data 
-                updating DOM 
-                calling APIs
+   2.useEffect:  use effect is one of the most important React hooks. it lets you perform side effect.
+                in a function compoenents.
+
+                A side effect is anythingh that interacts with something outside the component rendering .
+
+                Note: After rendering the comoponent run the code.
