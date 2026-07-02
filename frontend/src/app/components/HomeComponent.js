@@ -7,14 +7,14 @@ export default function HomeComponent(){
    const[x,setX]=useState(0);
 
    const [products,setPropducts]=useState([]);
+   const [category,setCategory]=useState("");
+   const [categorylist,setCategorylist]=useState([])
 
 function test(){
- 
  setCount(10)
   console.log(count)
   setX(20)
   console.log(x)
-
 }
 
 useEffect(()=>{
@@ -27,71 +27,31 @@ console.log(`count : ${count}`)
 console.log(`x : ${x}`)
 },[count,x])
 
+// To show list of products when you page load first time
 useEffect(()=>{
  //API CALL 
  fetch('https://dummyjson.com/products')
  .then(res=>res.json())
  .then(data =>setPropducts(data.products));
+
+ fetch('https://dummyjson.com/products/category-list')
+ .then(res => res.json())
+ .then(data =>setCategorylist(data));
+
+ 
+
 },[])
 
-console.log(products);
-   
+// To show product result based upon search by cateogry
+useEffect(()=>{
+  if(!category) return;
 
+  fetch(`https://dummyjson.com/products/category/${category}`)
+  .then(res=>res.json())
+  .then(data =>setPropducts(data.products));
+},[category])
 
-    // const products = [
-    //     {
-    //       id: 1,
-    //       name: "Wireless Headphones",
-    //       price: "$99",
-    //       image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-    //     },
-    //     {
-    //       id: 2,
-    //       name: "Smart Watch",
-    //       price: "$149",
-    //       image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-    //     },
-    //     {
-    //       id: 3,
-    //       name: "Bluetooth Speaker",
-    //       price: "$79",
-    //       image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-    //     },
-    //     {
-    //       id: 4,
-    //       name: "Laptop Backpack",
-    //       price: "$59",
-    //       image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-    //     },
-
-
-    //     {
-    //         id: 5,
-    //         name: "Wireless Headphones",
-    //         price: "$99",
-    //         image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-    //       },
-    //       {
-    //         id: 6,
-    //         name: "Smart Watch",
-    //         price: "$149",
-    //         image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-    //       },
-    //       {
-    //         id: 7,
-    //         name: "Bluetooth Speaker",
-    //         price: "$79",
-    //         image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-    //       },
-    //       {
-    //         id: 8,
-    //         name: "Laptop Backpack",
-    //         price: "$59",
-    //         image: "https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg",
-    //       }
-
-
-    //   ];
+console.log(products)
 
     return(
         <>
@@ -101,14 +61,23 @@ console.log(products);
       <section className="hero">
         <h2>Featured Products</h2>
         <p>Discover the latest gadgets and accessories.</p>
+        <select className="searchbox" onChange={(e)=>setCategory(e.target.value)}>
+          <option value="">Filter By Category ......</option>
+          {categorylist.map((cat)=>(
+            <option value={cat} key={cat}>{cat}</option>
+          ))}
+          
+        </select>
+        
       </section>
+
 
       <div className="productGrid">
 
       {products.map(data=>(
           <div key={data.id} className="productCard">
           <img
-            src="https://img.magnific.com/free-vector/display-template-with-mobile-phones_79603-1245.jpg"
+            src={data.thumbnail}
             className="productImage"
           />
           <h3 className="productName">{data.title}</h3>
