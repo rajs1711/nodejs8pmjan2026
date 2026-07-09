@@ -72,3 +72,12 @@ In react we have two types of comoponent:
                 A side effect is anythingh that interacts with something outside the component rendering .
 
                 Note: After rendering the comoponent run the code.
+cookies:
+A cookie is a small piece of data that a website stores on your device through your web browser. Cookies help websites remember information about you.
+
+For example, cookies can:
+
+Keep you logged in to a website.
+Remember your language or theme preference.
+Save items in your shopping cart.
+Track your browsing activity for analytics or personalized advertising.

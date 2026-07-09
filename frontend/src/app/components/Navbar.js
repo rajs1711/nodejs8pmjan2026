@@ -12,14 +12,9 @@ export default function Navbar(){
         src:"/signup"
        },
        {
-        id:3,
-        label:"SignIn",
-        src:"/login"
-       },
-       {
         id:4,
-        label:"AboutUs",
-        src:"#"
+        label:"SignOut",
+        src:"/signout"
        }
     ];
 
